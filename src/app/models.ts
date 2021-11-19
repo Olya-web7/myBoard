@@ -24,3 +24,10 @@ export interface Item {
   color: string,
   comments: Comment[]
 }
+
+export interface Board {
+  id: number,
+  title: string,
+  color: string,
+  list: Card[]
+}
