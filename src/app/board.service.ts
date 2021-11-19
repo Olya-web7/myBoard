@@ -60,4 +60,22 @@ export class BoardService {
   getBoard$() {
     return this.board$.asObservable()
   }
+
+  deleteComment(columnId: any, itemId: any, commentId: any) {
+    this.board = this.board.map((column) => {
+      if (column.id === columnId) {
+        const list = column.list.map((item: any) => {
+          if (item.id === itemId) {
+            item.comments = item.comments.filter((comment: any) => {
+              return comment.id !== commentId
+            })
+          }
+          return item
+        })
+        column.list = list
+      }
+      return column
+    })
+    this.board$.next([...this.board])
+  }
 }
