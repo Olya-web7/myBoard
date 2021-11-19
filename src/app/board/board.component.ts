@@ -17,7 +17,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDeleteComment(comment: any, columnId: any, item: any) {
+  onDeleteComment(comment: Comment, columnId: number, item: Item) {
     this.boardService.deleteComment(columnId, item.id, comment.id)
   }
 

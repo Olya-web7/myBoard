@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Comment, Item } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -61,12 +62,12 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
-  deleteComment(columnId: any, itemId: any, commentId: any) {
+  deleteComment(columnId: number, itemId: number, commentId: number) {
     this.board = this.board.map((column) => {
       if (column.id === columnId) {
-        const list = column.list.map((item: any) => {
+        const list = column.list.map((item: Item) => {
           if (item.id === itemId) {
-            item.comments = item.comments.filter((comment: any) => {
+            item.comments = item.comments.filter((comment: Comment) => {
               return comment.id !== commentId
             })
           }
