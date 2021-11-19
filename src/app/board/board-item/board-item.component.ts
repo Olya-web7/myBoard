@@ -7,8 +7,9 @@ import { Item } from 'src/app/models';
   styleUrls: ['./board-item.component.scss']
 })
 export class BoardItemComponent implements OnInit {
-  @Input() item!: Item
-
+  @Input() item!: Item;
+  commentInput = '';
+  open = false;
   constructor() { }
 
   ngOnInit(): void {

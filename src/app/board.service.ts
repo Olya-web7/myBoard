@@ -14,24 +14,14 @@ export class BoardService {
         {
           id: 1,
           text: 'text',
-          like: 1,
-          comments: [
-            {
-              id: 1,
-              text: 'comment'
-            }
-          ]
+          like: 0,
+          comments: []
         },
         {
           id: 2,
           text: 'text',
-          like: 1,
-          comments: [
-            {
-              id: 1,
-              text: 'comment'
-            }
-          ]
+          like: 0,
+          comments: []
         }
       ]
     },
@@ -43,7 +33,7 @@ export class BoardService {
         {
           id: 1,
           text: 'text',
-          like: 1,
+          like: 0,
           comments: [
             {
               id: 1,

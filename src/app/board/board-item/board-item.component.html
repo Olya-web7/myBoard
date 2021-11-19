@@ -1,19 +1,41 @@
 <div class="d-flex justify-content-between align-items-start mb-2">
-  <div class="mt-1">{{ item.text }}</div>
+  <div class="mt-1">{{ item.text | titlecase }}</div>
 </div>
 
-<div class="d-flex justify-content-end align-items-center mb-2">
+<div class="d-flex justify-content-end align-items-center mr-1">
   <button mat-icon-button class="icon-delete">
-    <mat-icon style="font-size: 1.3rem;">delete_outline</mat-icon>
+    <mat-icon style="font-size: 1.32em;">delete_outline</mat-icon>
   </button>
   <button mat-icon-button disableRipple >
-    <mat-icon class="icon">thumb_up_off_all</mat-icon>
+    <mat-icon style="font-size: 1.1em;" class="icon">thumb_up_off_all</mat-icon>
   </button>
-  <span>{{ item.like }}</span>
-  <button mat-icon-button disableRipple class="ml-2">
+  <span style="font-size: 0.7em;">{{ item.like }}</span>
+  <button mat-icon-button disableRipple class="ml-2" (click)="open=!open">
     <mat-icon class="icon">chat_bubble_outline</mat-icon>
   </button>
-  <span>{{ item.comments.length }}</span>
+  <span style="font-size: 0.7em;">{{ item.comments.length }}</span>
+</div>
+
+<div *ngIf="open">
+  <mat-form-field
+    class="w-100 mb-2"
+    [ngStyle]="{background:item.color}"
+  >
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()"></textarea>
+    <button
+      mat-button
+      *ngIf="commentInput"
+      matSuffix
+      mat-icon-button
+      color='primary'
+      class="icon-confirm"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <ng-content></ng-content>
 </div>
 
 
