@@ -15,7 +15,7 @@
           [ngStyle]="{background:column.color}"
           *ngFor="let item of column.list"
         >
-          {{item.text}}
+          <app-board-item [item]="item"></app-board-item>
         </div>
 
       </div>

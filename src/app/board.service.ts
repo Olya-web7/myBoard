@@ -38,7 +38,7 @@ export class BoardService {
     {
       id: 1,
       title: 'done',
-      color: 'tomato',
+      color: 'blue',
       list: [
         {
           id: 1,

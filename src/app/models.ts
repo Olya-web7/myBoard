@@ -16,3 +16,10 @@ export interface Column {
   color: string,
   list: Card[]
 }
+
+export interface Item {
+  id: number,
+  text: string,
+  like: number,
+  comments: Comment[]
+}

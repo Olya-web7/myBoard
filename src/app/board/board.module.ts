@@ -7,10 +7,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import { BoardItemComponent } from './board-item/board-item.component';
 
 @NgModule({
   declarations: [
-    BoardComponent
+    BoardComponent,
+    BoardItemComponent
   ],
   imports: [
     CommonModule,
