@@ -16,7 +16,6 @@ export class BoardComponent implements OnInit {
 
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -30,7 +29,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  lists = [
+  data = [
     this.done,
     this.todo
   ]
