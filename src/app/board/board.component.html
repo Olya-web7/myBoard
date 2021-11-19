@@ -1,16 +1,21 @@
 <div class="container-fluid">
   <div cdkDropListGroup class="row">
-    <div class="col-6" *ngFor="let column of boardService.getBoard$() | async">
+    <div class="col-4" *ngFor="let column of boardService.getBoard$() | async">
       <h2>{{column.title | titlecase}}</h2>
       <div
         cdkDropList
-        [cdkDropListData]="column"
+        [cdkDropListData]="column.list"
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
 
-        <div cdkDrag class="example-box" *ngFor="let item of column">
-          {{item}}
+        <div
+          cdkDrag
+          class="example-box"
+          [ngStyle]="{background:column.color}"
+          *ngFor="let item of column.list"
+        >
+          {{item.text}}
         </div>
 
       </div>

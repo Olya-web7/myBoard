@@ -21,6 +21,17 @@ export class BoardService {
               text: 'comment'
             }
           ]
+        },
+        {
+          id: 2,
+          text: 'text',
+          like: 1,
+          comments: [
+            {
+              id: 1,
+              text: 'comment'
+            }
+          ]
         }
       ]
     },
