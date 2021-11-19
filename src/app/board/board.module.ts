@@ -9,11 +9,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BoardItemComponent } from './board-item/board-item.component';
 import { FormsModule } from '@angular/forms';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
     BoardComponent,
-    BoardItemComponent
+    BoardItemComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
