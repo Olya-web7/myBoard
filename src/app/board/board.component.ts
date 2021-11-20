@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardService } from '../board.service';
-import { Comment, Item } from '../models';
 
 @Component({
   selector: 'app-board',
@@ -17,10 +16,6 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDeleteComment(comment: Comment, columnId: number, item: Item) {
-    this.boardService.deleteComment(columnId, item.id, comment.id)
-  }
-
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -32,6 +27,6 @@ export class BoardComponent implements OnInit {
         event.currentIndex,
       );
     }
-  } 
+  }
 
 }

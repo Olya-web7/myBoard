@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Board, Comment, Item } from './models';
+import { Board, Column } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +17,6 @@ export class BoardService {
           text: 'text',
           like: 0,
           comments: []
-        },
-        {
-          id: 2,
-          text: 'text',
-          like: 0,
-          comments: [
-            {
-              id: 1,
-              text: 'comment'
-            }
-          ]
         }
       ]
     },
@@ -40,21 +29,12 @@ export class BoardService {
           id: 1,
           text: 'text',
           like: 0,
-          comments: [
-            {
-              id: 1,
-              text: 'comment'
-            },
-            {
-              id: 1,
-              text: 'comment'
-            }
-          ]
+          comments: []
         }
       ]
     }
   ]
-  private board: Board[] = this.initBoard
+  private board: any[] = this.initBoard
   private board$ = new BehaviorSubject<any[]>(this.initBoard)
   constructor() { }
 
@@ -62,21 +42,24 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
-  deleteComment(columnId: number, itemId: number, commentId: number) {
-    this.board = this.board.map((column) => {
+  addComment(columnId: number, cardId: number, text: string) {
+    this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
-        const list = column.list.map((item) => {
-          if (item.id === itemId) {
-            item.comments = item.comments.filter((comment: Comment) => {
-              return comment.id !== commentId
-            })
+        const list = column.list.map((card) => {
+          if (card.id === cardId) {
+            const newComment = {
+              id: Date.now(),
+              text,
+            };
+            card.comments = [newComment, ...card.comments];
           }
-          return item
-        })
-        column.list = list
+          return card;
+        });
+        column.list = list;
       }
-      return column
-    })
-    this.board$.next([...this.board])
+      return column;
+    });
+    this.board$.next([...this.board]);
   }
+
 }

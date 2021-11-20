@@ -21,7 +21,7 @@ export interface Item {
   id: number,
   text: string,
   like: number,
-  color: string,
+  color?: string,
   comments: Comment[]
 }
 
