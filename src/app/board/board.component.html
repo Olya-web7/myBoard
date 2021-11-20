@@ -2,8 +2,9 @@
   <div cdkDropListGroup class="row">
     <div class="col-sm-6 col-lg-3 mb-3" *ngFor="let column of boardService.getBoard$() | async">
 
-      <div class="d-flex justify-content-center align-items-center p-2 shadow-sm">
+      <div class="d-flex justify-content-between align-items-center p-2 shadow-sm">
         <h2 class="m-0">{{column.title | titlecase}}</h2>
+        <app-color></app-color>
       </div>
 
       <app-dialog (emitText)="onAddCard($event, column.id)" [question]="'Add new card in ' + column.title + ' column'">
