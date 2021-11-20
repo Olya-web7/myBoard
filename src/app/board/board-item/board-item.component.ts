@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Item, Comment, Card } from 'src/app/models';
+import { Comment, Card } from 'src/app/models';
 
 @Component({
   selector: 'app-board-item',
@@ -7,7 +7,7 @@ import { Item, Comment, Card } from 'src/app/models';
   styleUrls: ['./board-item.component.scss']
 })
 export class BoardItemComponent implements OnInit {
-  @Input() item!: Item;
+  @Input() item!: Card
   @Output() emitText: EventEmitter<Comment> = new EventEmitter();
   @Output() emitCardItem: EventEmitter<{card: Card}> = new EventEmitter();
   @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
