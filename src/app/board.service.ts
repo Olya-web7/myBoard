@@ -9,8 +9,8 @@ export class BoardService {
   private initBoard = [
     {
       id: 1,
-      title: 'todo',
-      color: 'tomato',
+      title: 'Went well',
+      color: '#009785',
       list: [
         {
           id: 1,
@@ -22,8 +22,8 @@ export class BoardService {
     },
     {
       id: 2,
-      title: 'done',
-      color: 'blue',
+      title: 'To improve',
+      color: '#e82b63',
       list: [
         {
           id: 1,

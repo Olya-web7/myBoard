@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BoardItemComponent } from './board-item/board-item.component';
 import { FormsModule } from '@angular/forms';
 import { CommentComponent } from './comment/comment.component';
+import { DialogModule } from '../components/dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommentComponent } from './comment/comment.component';
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    DialogModule
   ],
   exports: [
     BoardComponent
