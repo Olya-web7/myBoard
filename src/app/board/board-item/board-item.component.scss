@@ -15,11 +15,12 @@
 }
 
 .mat-icon-button .mat-button-wrapper>* {
-  vertical-align: none !important;
+  vertical-align: none;
 }
 mat-form-field.mat-form-field {
-  background-color: rgb(212, 212, 212);
+  background-color: rgba(186, 211, 243, 0.5);
   padding: 10px 10px 0 10px;
+  border-radius: 4px;
 }
 
 ::ng-deep .mat-form-field.mat-focused {
