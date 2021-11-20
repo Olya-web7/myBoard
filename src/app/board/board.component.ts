@@ -15,6 +15,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  onColorChange(color: string, columnId: number) {
+    this.boardService.changeColumnColor(color, columnId)
+  }
+
   onAddCard(text: string, columnId: number) {
     if (text) {
       this.boardService.addCard(text, columnId)

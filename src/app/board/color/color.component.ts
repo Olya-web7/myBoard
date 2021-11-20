@@ -4,7 +4,8 @@ enum colors {
   green = '#009785',
   pink = '#e82b63',
   blue = '#208eed',
-  purple = '#912f84'
+  purple = '#912f84',
+  violet = '#6e1d96',
 }
 
 @Component({
