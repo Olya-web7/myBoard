@@ -6,7 +6,7 @@
   <button mat-icon-button class="icon-delete">
     <mat-icon style="font-size: 1.32em;">delete_outline</mat-icon>
   </button>
-  <button mat-icon-button disableRipple >
+  <button mat-icon-button disableRipple (click)="onCardItemEmit(item)">
     <mat-icon class="icon">thumb_up_off_all</mat-icon>
   </button>
   <span>{{ item.like }}</span>

@@ -14,8 +14,8 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // onCommentEmit(comment: Comment) {
-  //   this.emitComment.emit(comment);
-  // }
+  onCommentEmit(comment: Comment) {
+    this.emitComment.emit(comment);
+  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Item, Comment } from 'src/app/models';
+import { Item, Comment, Card } from 'src/app/models';
 
 @Component({
   selector: 'app-board-item',
@@ -8,8 +8,11 @@ import { Item, Comment } from 'src/app/models';
 })
 export class BoardItemComponent implements OnInit {
   @Input() item!: Item;
-  @Output() emitText: EventEmitter<Comment> = new EventEmitter();
-  commentInput = '';
+  @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
+  @Output() emitCardItem: EventEmitter<Card> = new EventEmitter();
+  @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
+
+  commentInput = ''
   open = false;
   constructor() { }
 
@@ -20,6 +23,11 @@ export class BoardItemComponent implements OnInit {
   onCommentTextEmit(id: number) {
     this.emitText.emit({ id, text: this.commentInput });
     this.commentInput = ''
+  }
+
+  // like
+  onCardItemEmit(card: Card) {
+    this.emitCardItem.emit({card})
   }
 
 }

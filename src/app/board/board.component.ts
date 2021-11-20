@@ -13,7 +13,15 @@ export class BoardComponent implements OnInit {
     public boardService: BoardService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  onAddLike(event: { card: any }, columnId: number) {
+    const {card: {id}} = event
+    this.boardService.addLike(id, columnId)
+  }
+
+  onAddComment(event: { id: number, text: string }, columnId: number) {
+    this.boardService.addComment(columnId, event.id, event.text)
   }
 
   drop(event: CdkDragDrop<string[]>) {

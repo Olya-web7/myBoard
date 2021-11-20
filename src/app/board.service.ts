@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Board, Column } from './models';
+import { Card, Column } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class BoardService {
       ]
     },
     {
-      id: 1,
+      id: 2,
       title: 'done',
       color: 'blue',
       list: [
@@ -42,12 +42,40 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
+  deleteCard(cardId: number, columnId: number) {
+    this.board = this.board.map((column: Column) => {
+      if (column.id === columnId) {
+        column.list = column.list.filter((card) => card.id !== cardId);
+      }
+      return column;
+    });
+    this.board$.next([...this.board]);
+  }
+
+  addLike(cardId: number, columnId: number) {
+    this.board = this.board.map((column) => {
+      if (column.id === columnId) {
+        let list = column.list.map((card: Card) => {
+          if (card.id === cardId) {
+            card.like++
+          }
+          return card;
+        });
+        column.list = list;
+        return column;
+      } else {
+        return column;
+      }
+    });
+    this.board$.next([...this.board]);
+  }
+
   addComment(columnId: number, cardId: number, text: string) {
     this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
-        const list = column.list.map((card) => {
+        const list = column.list.map((card: Card) => {
           if (card.id === cardId) {
-            const newComment = {
+            let newComment = {
               id: Date.now(),
               text,
             };
