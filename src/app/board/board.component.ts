@@ -15,8 +15,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onAddCard(event: any, column: any) {
-    console.log(event, column);
+  onAddCard(text: string, columnId: number) {
+    if (text) {
+      this.boardService.addCard(text, columnId)
+    }
   }
 
   onDeleteCard(cardId: number, columnId: number) {

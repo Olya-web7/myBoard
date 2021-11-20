@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Card, Column, Board } from './models';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { Card, Column } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +43,40 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
-  deleteCard(cardId: number, columnId: number) {
-    this.board = this.board.map((column: Column) => {
+  addColumn(title: string) {
+    const newColumn: any = {
+      id: Date.now(),
+      title: title,
+      color: '#009785',
+      list: [],
+    };
+
+    this.board = [...this.board, newColumn];
+    this.board$.next([...this.board]);
+  }
+
+  addCard(text: string, columnId: number) {
+    const newCard: any = {
+      id: Date.now(),
+      text,
+      like: 0,
+      comments: [],
+    };
+
+    this.board = this.board.map((column: any) => {
       if (column.id === columnId) {
-        column.list = column.list.filter((card) => card.id !== cardId);
+        column.list = [...column.list, newCard];
+      }
+      return column;
+    });
+
+    this.board$.next([...this.board]);
+  }
+
+  deleteCard(cardId: number, columnId: number) {
+    this.board = this.board.map((column: any) => {
+      if (column.id === columnId) {
+        column.list = column.list.filter((card: any) => card.id !== cardId);
       }
       return column;
     });
@@ -53,9 +84,9 @@ export class BoardService {
   }
 
   addLike(cardId: number, columnId: number) {
-    this.board = this.board.map((column) => {
+    this.board = this.board.map((column: any) => {
       if (column.id === columnId) {
-        let list = column.list.map((card: Card) => {
+        let list = column.list.map((card: any) => {
           if (card.id === cardId) {
             card.like++
           }
@@ -71,9 +102,9 @@ export class BoardService {
   }
 
   addComment(columnId: number, cardId: number, text: string) {
-    this.board = this.board.map((column: Column) => {
+    this.board = this.board.map((column) => {
       if (column.id === columnId) {
-        const list = column.list.map((card: Card) => {
+        const list = column.list.map((card: any) => {
           if (card.id === cardId) {
             let newComment = {
               id: Date.now(),

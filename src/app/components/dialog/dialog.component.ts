@@ -9,7 +9,7 @@ import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 })
 export class DialogComponent implements OnInit {
   @Output() emitText: EventEmitter<any> = new EventEmitter()
-  @Input() question!: string;
+  @Input() question?: string;
 
   constructor(public dialog: MatDialog) { }
 
@@ -20,6 +20,10 @@ export class DialogComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogBodyComponent, {
       width: '400px',
       data: { question: this.question }
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.emitText.emit(res)
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BoardService } from '../board.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public boardService: BoardService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  addColumn(event: string) {
+    if (event) {
+      this.boardService.addColumn(event)
+    }
   }
 
 }
