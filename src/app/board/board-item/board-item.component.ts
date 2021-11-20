@@ -29,4 +29,8 @@ export class BoardItemComponent implements OnInit {
     this.emitCardItem.emit({card})
   }
 
+  onCardDelete(id: number) {
+    this.emitDeleteCard.emit(id)
+  }
+
 }

@@ -15,6 +15,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  onDeleteCard(cardId: number, columnId: number) {
+    this.boardService.deleteCard(cardId, columnId)
+  }
+
   onAddLike(event: { card: any }, columnId: number) {
     const {card: {id}} = event
     this.boardService.addLike(id, columnId)
