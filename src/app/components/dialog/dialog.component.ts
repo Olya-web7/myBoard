@@ -8,7 +8,7 @@ import { DialogBodyComponent } from './dialog-body/dialog-body.component';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  @Output() emitText: EventEmitter<any> = new EventEmitter()
+  @Output() emitText: EventEmitter<string> = new EventEmitter()
   @Input() question?: string;
 
   constructor(public dialog: MatDialog) { }
