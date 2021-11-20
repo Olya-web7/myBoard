@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardService } from '../board.service';
+import { Card, Column } from '../models';
+
 
 @Component({
   selector: 'app-board',
@@ -29,7 +31,7 @@ export class BoardComponent implements OnInit {
     this.boardService.deleteCard(cardId, columnId)
   }
 
-  onAddLike(event: { card: any }, columnId: number) {
+  onAddLike(event: { card: Card }, columnId: number) {
     const {card: {id}} = event
     this.boardService.addLike(id, columnId)
   }
@@ -38,7 +40,7 @@ export class BoardComponent implements OnInit {
     this.boardService.addComment(columnId, event.id, event.text)
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Card[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

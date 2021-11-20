@@ -10,7 +10,7 @@ export class BoardService {
     {id: 1, title: 'Went well', color: '#009785', list: []}
   ]
   private board: Column[] = this.initBoard
-  public board$ = new BehaviorSubject<Column[] | any>(this.initBoard)
+  public board$ = new BehaviorSubject<Column[]>(this.initBoard)
 
   getBoard$() {
     return this.board$.asObservable()
