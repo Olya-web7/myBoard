@@ -1,43 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-import { Board, Card, Column } from './models';
+import { Card, Column } from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardService {
   private initBoard = [
-    {
-      id: 1,
-      title: 'Went well',
-      color: '#009785',
-      list: [
-        {
-          id: 1,
-          text: 'new task',
-          like: 0,
-          comments: []
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: 'To improve',
-      color: '#e82b63',
-      list: []
-    }
+    {id: 1, title: 'Went well', color: '#009785', list: []}
   ]
-  private board: any[] = this.initBoard
-  private board$ = new BehaviorSubject<any[]>(this.initBoard)
-  constructor() { }
+  private board: Column[] = this.initBoard
+  public board$ = new BehaviorSubject<Column[] | any>(this.initBoard)
 
   getBoard$() {
     return this.board$.asObservable()
   }
 
   changeColumnColor(color: string, columnId: number) {
-    this.board = this.board.map((column: any) => {
+    this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
         column.color = color;
       }
@@ -76,7 +56,7 @@ export class BoardService {
   deleteCard(cardId: number, columnId: number) {
     this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
-        column.list = column.list.filter((card: any) => card.id !== cardId);
+        column.list = column.list.filter((card: Card) => card.id !== cardId);
       }
       return column;
     });
@@ -102,7 +82,7 @@ export class BoardService {
   }
 
   addComment(columnId: number, cardId: number, text: string) {
-    this.board = this.board.map((column) => {
+    this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
         const list = column.list.map((card: Card) => {
           if (card.id === cardId) {

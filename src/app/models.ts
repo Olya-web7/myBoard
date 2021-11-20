@@ -25,9 +25,3 @@ export interface Item {
   comments: Comment[]
 }
 
-export interface Board {
-  id: number,
-  title: string,
-  color: string,
-  list: Card[]
-}
