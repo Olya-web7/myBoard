@@ -8,7 +8,7 @@ import { Item, Comment, Card } from 'src/app/models';
 })
 export class BoardItemComponent implements OnInit {
   @Input() item!: Item;
-  @Output() emitText: EventEmitter<{ id: number; text: string }> = new EventEmitter();
+  @Output() emitText: EventEmitter<Comment> = new EventEmitter();
   @Output() emitCardItem: EventEmitter<Card> = new EventEmitter();
   @Output() emitDeleteCard: EventEmitter<number> = new EventEmitter();
 
