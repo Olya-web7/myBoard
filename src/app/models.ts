@@ -12,7 +12,7 @@ export interface Card {
 
 export interface Column {
   id: number,
-  text: string,
+  title: string,
   color: string,
   list: Card[]
 }
