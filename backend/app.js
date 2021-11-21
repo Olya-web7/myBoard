@@ -1,9 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
 const Column = require('./models/column');
-
 const app = express();
 
 mongoose.connect('mongodb+srv://olya:AaFbYgMfg4aHoQ82@cluster0.frvxq.mongodb.net/myBoard?retryWrites=true&w=majority')
@@ -31,21 +29,21 @@ app.post("/api/board", (req, res, next) => {
     list: req.body.list
   });
   column.save();
-  console.log(column);
+
   res.status(201).json({
     message: 'column added successfully'
   });
 });
 
 app.get('/api/board', (req, res, next) => {
-  const board = [
-    {id: 134566, title: 'Done', color: '#009785', list: []},
-    {id: 18765432, title: 'Went not well', color: '#009785', list: []}
-  ];
- res.status(200).json({
-   message: 'board fetched successfully',
-   board: board
- });
+  Column.find()
+    .then(documents => {
+      console.log(documents);
+      res.status(200).json({
+        message: 'board fetched successfully',
+        board: documents
+    });
+  });
 });
 
 module.exports = app;

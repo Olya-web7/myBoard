@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { Card, Column } from './models';
 
 @Injectable({providedIn: 'root'})
@@ -10,16 +12,25 @@ export class BoardService {
     {id: 1, title: 'Went well', color: '#009785', list: []}
   ]
   private board: Column[] = this.initBoard
-
   private board$ = new BehaviorSubject<Column[]>(this.initBoard)
-
-  constructor(private http: HttpClient ) {
-  }
+  constructor(private http: HttpClient ) {}
 
   getBoard() {
-    this.http.get<{message: string, board: Column[]}>('http://localhost:3000/api/board')
-      .subscribe((boardData) => {
-        this.board = boardData.board;
+    this.http.get<{message: string, board: any }>(
+      'http://localhost:3000/api/board'
+    )
+      .pipe(map((boardData) => {
+        return boardData.board.map((column: { title: any; color: any; _id: any; list: any; }) => {
+          return {
+            title: column.title,
+            color: column.color,
+            id: column._id,
+            list: column.list
+          };
+        });
+      }))
+      .subscribe((transformedBoard) => {
+        this.board = transformedBoard;
         this.board$.next([...this.board]);
       });
   }
@@ -47,9 +58,10 @@ export class BoardService {
     };
     // this.board = [...this.board, newColumn];
     this.http.post<{ message: string }>('http://localhost:3000/api/board', newColumn)
+
       .subscribe((responseData) => {
-        console.log(responseData.message);
-        this.board.push(newColumn);
+        this.board = [...this.board, newColumn]
+        // this.board.push(newColumn);
         this.board$.next([...this.board]);
       });
   }
