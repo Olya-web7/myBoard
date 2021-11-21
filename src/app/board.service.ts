@@ -45,7 +45,9 @@ export class BoardService {
       color: '#009785',
       list: [],
     };
-    this.board = [...this.board, newColumn];
+    // this.board = [...this.board, newColumn];
+    this.http.post<{message: string}>('http://localhost:3000/api/board', newColumn);
+    this.board.push(newColumn);
     this.board$.next([...this.board]);
   }
 
