@@ -46,7 +46,10 @@ export class BoardService {
       list: [],
     };
     // this.board = [...this.board, newColumn];
-    this.http.post<{message: string}>('http://localhost:3000/api/board', newColumn);
+    this.http.post<{message: string}>('http://localhost:3000/api/board', newColumn)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+      });
     this.board.push(newColumn);
     this.board$.next([...this.board]);
   }
