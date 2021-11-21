@@ -11,9 +11,7 @@ import { Card, Column } from '../models';
 })
 export class BoardComponent implements OnInit {
 
-  constructor(
-    public boardService: BoardService
-  ) { }
+  constructor(public boardService: BoardService) { }
 
   ngOnInit(): void { }
 
