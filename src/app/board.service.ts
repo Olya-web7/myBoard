@@ -10,10 +10,8 @@ export class BoardService {
     {id: 1, title: 'Went well', color: '#009785', list: []}
   ]
   private board: Column[] = this.initBoard
-  // private board: Column[] = []
 
   private board$ = new BehaviorSubject<Column[]>(this.initBoard)
-  // private boardUpdated = new Subject<Column[]>(this.initBoard)
 
   constructor(private http: HttpClient ) {
   }
