@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardService } from '../board.service';
 import { Card, Column } from '../models';
-
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-board',
@@ -10,10 +10,18 @@ import { Card, Column } from '../models';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  board: Column[] = [];
+  private boardSub!: Subscription;
 
   constructor(public boardService: BoardService) { }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.boardService.getBoard();
+    this.boardSub = this.boardService.getBoard$()
+      .subscribe((board: Column[]) => {
+        this.board = board;
+      })
+  }
 
   onColorChange(color: string, columnId: number) {
     this.boardService.changeColumnColor(color, columnId)

@@ -13,15 +13,6 @@ export interface Card {
 export interface Column {
   id: number,
   title: string,
-  color: string,
+  color?: string,
   list: Card[]
 }
-
-// export interface Item {
-//   id: number,
-//   text: string,
-//   like: number,
-//   color?: string,
-//   comments: Comment[]
-// }
-

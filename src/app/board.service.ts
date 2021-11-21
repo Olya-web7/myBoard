@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Card, Column } from './models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class BoardService {
+
   private initBoard = [
     {id: 1, title: 'Went well', color: '#009785', list: []}
   ]
   private board: Column[] = this.initBoard
-  public board$ = new BehaviorSubject<Column[]>(this.initBoard)
+  // private board: Column[] = []
+
+  private board$ = new BehaviorSubject<Column[]>(this.initBoard)
+  // private boardUpdated = new Subject<Column[]>(this.initBoard)
+
+  constructor(private http: HttpClient ) {
+  }
+
+  getBoard() {
+    this.http.get<{message: string, board: Column[]}>('http://localhost:3000/api/board')
+      .subscribe((boardData) => {
+        this.board = boardData.board;
+        this.board$.next([...this.board]);
+      });
+  }
 
   getBoard$() {
     return this.board$.asObservable()
