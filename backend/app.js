@@ -1,10 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const Column = require('./models/column');
 
 const app = express();
 
-app.use(bodyParser.json());
+mongoose.connect('mongodb+srv://olya:AaFbYgMfg4aHoQ82@cluster0.frvxq.mongodb.net/myBoard?retryWrites=true&w=majority')
+  .then(() => {
+    console.log('connected to db');
+  })
+  .catch(() => {
+    console.log('connection failed');
+  });
 
+app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader(
@@ -16,7 +26,11 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/board", (req, res, next) => {
-  const column = req.body;
+  const column = new Column({
+    title: req.body.title,
+    list: req.body.list
+  });
+  column.save();
   console.log(column);
   res.status(201).json({
     message: 'column added successfully'
