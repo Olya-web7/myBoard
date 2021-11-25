@@ -1,13 +1,12 @@
 <mat-toolbar class="shadow justify-content-between mb-4">
-  <span><a>Retro Board</a>
-  </span>
-  <ul>
-    <li>
-      <app-dialog (emitText)="addColumn($event)" question="Add new column">
-        <a mat-button color="primary">New Column</a>
-      </app-dialog>
-    </li>
-    <li><a routerLink="/login" mat-button>Login</a>
-  </li>
-  </ul>
+  <span><a [routerLink]="['/']">Retro Board</a></span>
+  <nav>
+    <app-dialog (emitText)="addColumn($event)" question="Add new column">
+      <a mat-button color="primary">New Column</a>
+    </app-dialog>
+    <button
+      [routerLink]="['/login']"
+      mat-button
+    >Login</button>
+  </nav>
 </mat-toolbar>
