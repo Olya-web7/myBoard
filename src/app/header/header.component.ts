@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BoardService } from '../board.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { BoardService } from '../board.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    public boardService: BoardService
+    public boardService: BoardService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -20,5 +22,10 @@ export class HeaderComponent implements OnInit {
       this.boardService.addColumn(event)
     }
   }
+
+  // logout(event: Event) {
+  //   event?.preventDefault();
+  //   this.router.navigate(['/login', ''])
+  // }
 
 }

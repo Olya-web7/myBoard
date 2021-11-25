@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './header/header.module';
 import { BoardModule } from './board/board.module';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { LoginComponent } from './auth/login/login.component';
 import { MatCardModule } from '@angular/material/card';
@@ -24,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderModule,
     BoardModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
     MatButtonModule,

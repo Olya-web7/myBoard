@@ -39,9 +39,9 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
-  getColumn(id: number) {
-    return { ...this.board.find(c => c.id === id) };
-  }
+  // getColumn(id: number) {
+  //   return { ...this.board.find(c => c.id === id) };
+  // }
 
   changeColumnColor(color: string, columnId: number) {
     this.board = this.board.map((column: Column) => {

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { BoardService } from 'src/app/board.service';
 
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +8,15 @@ import { BoardService } from 'src/app/board.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form!: FormGroup
 
-  constructor(
-    private route: ActivatedRoute,
-    private location: Location,
-    private boardService: BoardService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
   }
 
 }
