@@ -8,6 +8,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 mongoose.connect('mongodb+srv://olya:AaFbYgMfg4aHoQ82@cluster0.frvxq.mongodb.net/myBoard?retryWrites=true&w=majority')
+// mongoose.connect('mongodb+srv://olya:AaFbYgMfg4aHoQ82@cluster0.frvxq.mongodb.net/myBoard')
   .then(() => {
     console.log('connected to db');
   })
