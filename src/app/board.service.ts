@@ -39,10 +39,6 @@ export class BoardService {
     return this.board$.asObservable()
   }
 
-  // getColumn(id: number) {
-  //   return { ...this.board.find(c => c.id === id) };
-  // }
-
   changeColumnColor(color: string, columnId: number) {
     this.board = this.board.map((column: Column) => {
       if (column.id === columnId) {
@@ -60,16 +56,27 @@ export class BoardService {
       color: '#009785',
       list: [],
     };
-    // this.board = [...this.board, newColumn];
-    this.http.post<{ message: string }>(
-      'http://localhost:3000/api/board', newColumn)
-
-      .subscribe((responseData) => {
-        this.board = [...this.board, newColumn]
-        // this.board.push(newColumn);
-        this.board$.next([...this.board]);
-      });
+    this.board = [...this.board, newColumn];
+    this.board$.next([...this.board]);
   }
+
+  // addColumn(title: string) {
+  //   const newColumn: Column = {
+  //     id: Date.now(),
+  //     title: title,
+  //     color: '#009785',
+  //     list: [],
+  //   };
+  //   // this.board = [...this.board, newColumn];
+  //   this.http.post<{ message: string }>(
+  //     'http://localhost:3000/api/board', newColumn)
+
+  //     .subscribe((responseData) => {
+  //       // this.board = [...this.board, newColumn]
+  //       this.board.push(newColumn);
+  //       this.board$.next([...this.board]);
+  //     });
+  // }
 
   addCard(text: string, columnId: number) {
     const newCard: Card = {
