@@ -23,9 +23,4 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  // logout(event: Event) {
-  //   event?.preventDefault();
-  //   this.router.navigate(['/login', ''])
-  // }
-
 }
