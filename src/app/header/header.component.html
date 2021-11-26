@@ -2,11 +2,9 @@
   <span><a [routerLink]="['/']">Retro Board</a></span>
   <nav>
     <app-dialog (emitText)="addColumn($event)" question="Add new column">
-      <button mat-button color="primary">New Column</button>
+      <button mat-raised-button color="primary">New Column</button>
     </app-dialog>
-    <button
-      [routerLink]="['/login']"
-      mat-button
-    >Login</button>
+    <button [routerLink]="['/login']" mat-button color="primary">Login</button>
+    <button [routerLink]="['/signup']" mat-button color="primary">Signup</button>
   </nav>
 </mat-toolbar>
