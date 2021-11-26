@@ -50,7 +50,7 @@ export class BoardService {
   }
 
   addColumn(title: string) {
-    const newColumn: Column = {
+    let newColumn: Column = {
       id: Date.now(),
       title: title,
       color: '#009785',
@@ -58,6 +58,7 @@ export class BoardService {
     };
     this.board = [...this.board, newColumn];
     this.board$.next([...this.board]);
+    // localStorage.setItem('newColumn', newColumn);
   }
 
   // addColumn(title: string) {
